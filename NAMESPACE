@@ -2,3 +2,4 @@
 
 export(imaging.ROC)
 export(img.stand)
+export(strip.model)
