@@ -4,7 +4,8 @@
 \alias{hw2.sim.849}
 \title{A function to do question 2 from homework 2 in STAT 849}
 \usage{
-hw2.sim.849(h0.mean, num.samp, num.reps, samp.dist, times.scalar = FALSE, ...)
+hw2.sim.849(h0.mean, num.samp, num.reps, samp.dist, times.scalar = FALSE,
+  alpha = 0.05, ...)
 }
 \arguments{
 \item{h0.mean}{The mean under H0}
@@ -16,6 +17,8 @@ hw2.sim.849(h0.mean, num.samp, num.reps, samp.dist, times.scalar = FALSE, ...)
 \item{samp.dist}{The distribution to sample from, either "normal", "chisq", or "t"}
 
 \item{times.scalar}{This is added for part g. If true, the function randomly samples a 5 or 10 for each repetition and multiples that by the first observation in that repetition's sample.}
+
+\item{alpha}{= alpha level for test}
 
 \item{...}{Additional options to specify for the sampling distribution}
 }

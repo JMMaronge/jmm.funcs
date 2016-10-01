@@ -5,12 +5,13 @@
 #' @param num.samp The number of samples in each repetition     
 #' @param num.reps The number of repetitions   
 #' @param samp.dist The distribution to sample from, either "normal", "chisq", or "t"   
+#' @param alpha = alpha level for test
 #' @param times.scalar This is added for part g. If true, the function randomly samples a 5 or 10 for each repetition and multiples that by the first observation in that repetition's sample.
 #' @param ... Additional options to specify for the sampling distribution
 #' @keywords Classwork, STAT849, simulations
 #' @export
 
-hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE,  ...){
+hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, alpha=0.05,  ...){
   
   nsamp<-num.samp# number of samples in each rep
   nrep<-num.reps# number of repitions
@@ -30,7 +31,7 @@ hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, 
       pick<-sample(s,1)
       samps[i,1]<-samps[i,1]*pick}
     else{}
-    test<-t.test(samps[i,], mu=h0.mean) # performing t.test}
+    test<-t.test(samps[i,], mu=h0.mean, conf.level = (1-alpha)) # performing t.test}
     mu.cover[i]<-prod((test$conf.int - h0.mean))<0 # if this is true, 0 is within the ci, o.w. false
   }
   output<-vector(mode="list",length=2)
