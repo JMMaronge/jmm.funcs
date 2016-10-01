@@ -41,6 +41,6 @@ hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, 
   output$cov.prob<- sum(mu.cover==TRUE)/nrep #calculating coverage probability
   output$type1.err.rate<- sum(mu.cover==FALSE)/nrep #calculates the type 1 error rate,
   #this works because if the 95% CI does not include 0, this implies p-val<.05
-  output$CIs<-CIs
+  output$CIs<-ci
   return(output)
 }
