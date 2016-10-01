@@ -5,7 +5,7 @@
 #' @param num.samp The number of samples in each repetition     
 #' @param num.reps The number of repetitions   
 #' @param samp.dist The distribution to sample from, either "normal", "chisq", or "t"   
-#' @param alpha = alpha level for test
+#' @param alpha Alpha level for test
 #' @param times.scalar This is added for part g. If true, the function randomly samples a 5 or 10 for each repetition and multiples that by the first observation in that repetition's sample.
 #' @param ... Additional options to specify for the sampling distribution
 #' @keywords Classwork, STAT849, simulations

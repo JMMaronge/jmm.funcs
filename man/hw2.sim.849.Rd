@@ -18,7 +18,7 @@ hw2.sim.849(h0.mean, num.samp, num.reps, samp.dist, times.scalar = FALSE,
 
 \item{times.scalar}{This is added for part g. If true, the function randomly samples a 5 or 10 for each repetition and multiples that by the first observation in that repetition's sample.}
 
-\item{alpha}{= alpha level for test}
+\item{alpha}{Alpha level for test}
 
 \item{...}{Additional options to specify for the sampling distribution}
 }
