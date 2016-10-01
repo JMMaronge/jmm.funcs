@@ -32,7 +32,7 @@ hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, 
       samps[i,1]<-samps[i,1]*pick}
     else{}
     test<-t.test(samps[i,], mu=h0.mean, conf.level = (1-alpha)) # performing t.test}
-    mu.cover[i]<-prod((test$conf.int - h0.mean))<0 # if this is true, 0 is within the ci, o.w. false
+    mu.cover[i]<-(test$conf.int[1]<=h0.mean&h0.mean<=test$conf.int[2])
   }
   output<-vector(mode="list",length=2)
   names(output)<-c("cov.prob","type1.err.rate")
