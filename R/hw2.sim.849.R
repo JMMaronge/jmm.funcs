@@ -16,6 +16,7 @@ hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, 
   nsamp<-num.samp# number of samples in each rep
   nrep<-num.reps# number of repitions
   mu.cover<-vector(length = nrep)
+  ci<-matrix(NA, nrow=nrep,ncol=2)
   samps<-matrix(NA,nrow=nrep,ncol=nsamp) #matrix of simulated data
   for(i in 1:nrep){
     if(samp.dist=="normal"){
@@ -33,11 +34,13 @@ hw2.sim.849<-function(h0.mean, num.samp,num.reps,samp.dist, times.scalar=FALSE, 
     else{}
     test<-t.test(samps[i,], mu=h0.mean, conf.level = (1-alpha)) # performing t.test}
     mu.cover[i]<-(test$conf.int[1]<=h0.mean&h0.mean<=test$conf.int[2])
+    ci[i,]<-test$conf.int
   }
-  output<-vector(mode="list",length=2)
-  names(output)<-c("cov.prob","type1.err.rate")
+  output<-vector(mode="list",length=3)
+  names(output)<-c("cov.prob","type1.err.rate","CIs")
   output$cov.prob<- sum(mu.cover==TRUE)/nrep #calculating coverage probability
   output$type1.err.rate<- sum(mu.cover==FALSE)/nrep #calculates the type 1 error rate,
   #this works because if the 95% CI does not include 0, this implies p-val<.05
+  output$CIs<-CIs
   return(output)
 }
