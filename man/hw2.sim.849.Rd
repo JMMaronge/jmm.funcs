@@ -28,4 +28,3 @@ This function simulates data from  a distribution and performs a one sample T-te
 \keyword{Classwork,}
 \keyword{STAT849,}
 \keyword{simulations}
-

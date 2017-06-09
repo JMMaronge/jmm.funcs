@@ -16,4 +16,3 @@ This function was taken from muschellij2/ms_seg, it strips fit objects from R of
 strip.model()
 }
 \keyword{fit}
-

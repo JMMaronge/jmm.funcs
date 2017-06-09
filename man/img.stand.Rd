@@ -23,4 +23,3 @@ img.stand()
 \keyword{NIfTI,}
 \keyword{normalization,}
 \keyword{trimmed}
-

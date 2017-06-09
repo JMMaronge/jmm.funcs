@@ -30,4 +30,3 @@ imaging.ROC()
 \keyword{AUC,}
 \keyword{NIfTI}
 \keyword{ROC,}
-

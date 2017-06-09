@@ -3,4 +3,5 @@
 export(hw2.sim.849)
 export(imaging.ROC)
 export(img.stand)
+export(multiplot)
 export(strip.model)
