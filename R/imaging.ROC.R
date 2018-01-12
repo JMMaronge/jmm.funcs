@@ -36,7 +36,7 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
         tab <- matrix(c(sum(temp.dat$pred>=thresh & temp.dat$les==1),sum(temp.dat$pred<thresh & temp.dat$les==1),sum(temp.dat$pred>=thresh & temp.dat$les==0),sum(temp.dat$pred<thresh & temp.dat$les==0)),nrow=2,ncol=2)
         temp.sens <- (tab[1,1]/(tab[1,1]+tab[2,1]))
         temp.spec <- (tab[2,2]/(tab[2,2]+tab[1,2]))
-        if(1-temp.spec>.05){break}
+        if(1-temp.spec>max.fpr){break}
         sens[j] <- temp.sens
         spec[j] <- temp.spec
         j<-j+1
@@ -87,7 +87,7 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
       tab <- matrix(c(sum(total.dat$pred>=thresh & total.dat$les==1),sum(total.dat$pred<thresh & total.dat$les==1),sum(total.dat$pred>=thresh & total.dat$les==0),sum(total.dat$pred<thresh & total.dat$les==0)),nrow=2,ncol=2)
       temp.sens <- (tab[1,1]/(tab[1,1]+tab[2,1]))
       temp.spec <- (tab[2,2]/(tab[2,2]+tab[1,2]))
-      if(1-temp.spec>.05){break}
+      if(1-temp.spec>max.fpr){break}
       sens[j] <- temp.sens
       spec[j] <- temp.spec
       j<-j+1
@@ -132,7 +132,7 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
         tab <- matrix(c(sum(group.dat$pred>=thresh & group.dat$les==1),sum(group.dat$pred<thresh & group.dat$les==1),sum(group.dat$pred>=thresh & group.dat$les==0),sum(group.dat$pred<thresh & group.dat$les==0)),nrow=2,ncol=2)
         temp.sens <- (tab[1,1]/(tab[1,1]+tab[2,1]))
         temp.spec <- (tab[2,2]/(tab[2,2]+tab[1,2]))
-        if(1-temp.spec>.05){break}
+        if(1-temp.spec>max.fpr){break}
         sens[j] <- temp.sens
         spec[j] <- temp.spec
         j<-j+1
