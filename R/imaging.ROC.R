@@ -1,9 +1,9 @@
 #' A function to create ROC plots from a list of prediction images for segmentation
 #'
 #' This function creates different types of ROC plots from prediction images for segmentation. It also calculates AUC and returns the data.frame used for the plot.
-#' @param preds.list A list of prediction images as NIfTI objects for different subjects (can be of length 1)
-#' @param mask.list A list of brain masks as NIfTI objects in the same order as preds.list
-#' @param y.list A list of the gold standard segmentations as NIfTI objects in the same order as preds.list. 
+#' @param preds.list A list of prediction IMAGES (will change later) as NIfTI objects for different subjects (can be of length 1)
+#' @param mask.list A list of PATHS to brain masks in the same order as preds.list
+#' @param y.list A list of PATHS to the gold standard segmentations in the same order as preds.list. 
 #' @param vec.id A vector of ID's (as characters) corresponding to preds.list
 #' @param type There are 3 options: "subject", "total", or "group". "subject" creates a seperate ROC for each subject, "total" creates one overall ROC, and by group makes a seperate ROC for each group as determined by the group.list argument.
 #' @param group.list A list of sub-lists. This is only necessary if type="group". This should be a list of sublists where each sublist is the IDs of the subjects wanted in each group. For example, list(list("1","2"),list("3","4")) would create two ROCs, one with subjects "1" and "2" and the other with subjects "3" and "4".
@@ -24,8 +24,8 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
     for(i in 1:length(preds.list)){
       print(paste0("Starting Subject ",i))
       preds<-preds.list[[i]]
-      mask<-mask.list[[i]]
-      y<-y.list[[i]]
+      mask<-readnii(mask.list[[i]])
+      y<-readnii(y.list[[i]])
       temp.dat<-data.frame(pred=preds[mask==1],les=y[mask==1])
       threshold <- seq(from = 1, to = 0, by= -1/1000)
       sens <-c()
@@ -72,8 +72,8 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
     for(i in 1:length(preds.list)){
       print(paste0("Starting Subject ",i))
       preds<-preds.list[[i]]
-      mask<-mask.list[[i]]
-      y<-y.list[[i]]
+      mask<-readnii(mask.list[[i]])
+      y<-readnii(y.list[[i]])
       subj.dat[[i]]<-data.frame(pred=preds[mask==1],les=y[mask==1])
     }
     total.dat<-rbindlist(subj.dat)
@@ -109,8 +109,8 @@ imaging.ROC <-function(preds.list, mask.list, y.list,vec.id,type,group.list,max.
     subj.dat<-vector(mode="list",length = length(preds.list))
     for(i in 1:length(preds.list)){
       preds<-preds.list[[i]]
-      mask<-mask.list[[i]]
-      y<-y.list[[i]]
+      mask<-readnii(mask.list[[i]])
+      y<-readnii(y.list[[i]])
       temp.dat<-data.frame(pred=preds[mask==1],les=y[mask==1])
       temp.dat$Subject<-rep(vec.id[i],length(temp.dat$pred))
       subj.dat[[i]]<-temp.dat}

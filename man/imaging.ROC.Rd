@@ -7,11 +7,11 @@
 imaging.ROC(preds.list, mask.list, y.list, vec.id, type, group.list, max.fpr)
 }
 \arguments{
-\item{preds.list}{A list of prediction images as NIfTI objects for different subjects (can be of length 1)}
+\item{preds.list}{A list of prediction IMAGES (will change later) as NIfTI objects for different subjects (can be of length 1)}
 
-\item{mask.list}{A list of brain masks as NIfTI objects in the same order as preds.list}
+\item{mask.list}{A list of PATHS to brain masks in the same order as preds.list}
 
-\item{y.list}{A list of the gold standard segmentations as NIfTI objects in the same order as preds.list.}
+\item{y.list}{A list of PATHS to the gold standard segmentations in the same order as preds.list.}
 
 \item{vec.id}{A vector of ID's (as characters) corresponding to preds.list}
 
